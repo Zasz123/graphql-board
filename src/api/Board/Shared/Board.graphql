@@ -1,0 +1,11 @@
+type Board {
+  id: Int!
+  title: String!
+  descs: String!
+  createdAt: String!
+  updatedAt: String
+}
+
+type Query {
+  Board: Board
+}
