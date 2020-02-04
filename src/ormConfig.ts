@@ -5,7 +5,7 @@ const connectionOption: ConnectionOptions = {
   database: "graph-board",
   synchronize: true,
   logging: true,
-  entities: ["entities/**/*.*"],
+  entities: [__dirname + "/entities/*.ts"],
   host: "localhost",
   port: 3306,
   username: "root",

@@ -9,7 +9,7 @@ const resolvers: Resolvers = {
       args: RegisterMutationArgs
     ): Promise<RegisterResponse> => {
       try {
-        const Users = await User.create({ ...args });
+        const Users = await User.create({ ...args }).save();
         if (Users) {
           return {
             success: true,

@@ -8,8 +8,6 @@ import app from "./app";
 import schema from "./schema";
 
 const PORT: number | string = process.env.PORT || 4000;
-const PLAYGROUND_ENDPOINT: string = "/playground";
-const GRAPHQL_ENDPOINT: string = "/graphql";
 
 const server = new ApolloServer({
   schema,
