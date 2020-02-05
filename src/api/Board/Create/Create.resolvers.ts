@@ -4,9 +4,8 @@ import Board from "../../../entities/Board";
 
 const resolvers: Resolvers = {
   Mutation: {
-    Create: (_, args: CreateMutationArgs, { state }): CreateResponse => {
+    Create: (_, args: CreateMutationArgs): CreateResponse => {
       try {
-        console.log(state);
         const board = Board.create({ ...args }).save();
         if (!board) {
           throw new Error("database error!");

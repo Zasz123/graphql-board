@@ -7,8 +7,8 @@ import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Query: {
-    User: (parent, args, context) => {
-      console.log(context);
+    User: (parent, args, { state }) => {
+      console.log(state);
       return "";
     }
   },

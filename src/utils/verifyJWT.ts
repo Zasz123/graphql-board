@@ -5,7 +5,7 @@ const decodeJWT = async (token: string): Promise<User | undefined> => {
   try {
     const decoded: any = jwt.verify(token, "yanggaeng");
     const { id } = decoded;
-    const user = User.findOne({ id });
+    const user = await User.findOne({ id });
     return user;
   } catch (error) {
     return undefined;

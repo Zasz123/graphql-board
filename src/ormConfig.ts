@@ -6,10 +6,10 @@ const connectionOption: ConnectionOptions = {
   synchronize: true,
   logging: true,
   entities: [__dirname + "/entities/*.ts"],
-  host: "localhost",
+  host: process.env.DB_ENDPOINT,
   port: 3306,
-  username: "root",
-  password: "123456"
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD
 };
 
 export default connectionOption;

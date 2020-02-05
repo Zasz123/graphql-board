@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: __dirname + "/.env" });
 
 import { createConnection } from "typeorm";
-import connectionOptions from "./ormConfig";
 import App from "./app";
+import connectionOptions from "./ormConfig";
 
 const app = App.app;
 const server = App.server;

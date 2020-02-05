@@ -1,31 +1,33 @@
+import { ApolloServer } from "apollo-server-koa";
+import Koa from "koa";
 import cors from "koa-cors";
 import logger from "koa-logger";
-import Koa from "koa";
-import decodeJWT from "./utils/verifyJWT";
 import schema from "./schema";
-import { ApolloServer } from "apollo-server-koa";
+import decodeJWT from "./utils/verifyJWT";
 
 class App {
   public app: Koa;
   public server: ApolloServer;
   constructor() {
     this.app = new Koa();
+    this.middlewares();
     this.server = new ApolloServer({
       schema,
       introspection: true,
-      playground: {
-        endpoint: "/playground"
-      },
-      context: (ctx): Koa.Context => {
-        return ctx.state;
+      playground: true,
+      context: (ctx: Koa.Context) => {
+        console.log(ctx.state);
+        return {
+          state: ctx.state
+        };
       }
     });
-    this.middlewares();
   }
+
   private middlewares = (): void => {
-    this.app.use(cors());
     this.app.use(logger());
-    // this.app.use(this.jwt);
+    this.app.use(cors());
+    this.app.use(this.jwt);
   };
 
   private jwt = async (ctx: Koa.Context, next: Koa.Next): Promise<void> => {
@@ -38,7 +40,8 @@ class App {
         ctx.state.user = undefined;
       }
     }
-    next();
+    console.log(ctx.state);
+    await next();
   };
 }
 
