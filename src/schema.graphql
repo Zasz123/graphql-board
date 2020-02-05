@@ -1,5 +1,17 @@
+type CreateResponse {
+  success: Boolean!
+  error: String
+}
+
+type Mutation {
+  Create(title: String!, descs: String!): CreateResponse!
+  Login(accountId: String!, accountPw: String!): LoginResponse!
+  Register(accountId: String!, accountPw: String!, name: String!): RegisterResponse!
+}
+
 type Board {
   id: Int!
+  user: User
   title: String!
   descs: String!
   createdAt: String!
@@ -11,20 +23,23 @@ type Query {
   User: User
 }
 
+type LoginResponse {
+  success: Boolean!
+  error: String
+  token: String
+}
+
 type RegisterResponse {
   success: Boolean!
   error: String
 }
 
-type Mutation {
-  Register(userId: String!, userPw: String!, userName: String!): RegisterResponse!
-}
-
 type User {
   id: Int!
-  userId: String!
-  userPw: String!
-  userName: String!
+  accountId: String!
+  accountPw: String!
+  name: String!
+  board: [Board]
   createdAt: String!
   updatedAt: String
 }

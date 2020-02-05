@@ -1,0 +1,8 @@
+type CreateResponse {
+  success: Boolean!
+  error: String
+}
+
+type Mutation {
+  Create(title: String!, descs: String!): CreateResponse!
+}

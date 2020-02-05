@@ -1,19 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { ApolloServer, gql } from "apollo-server-koa";
 import { createConnection } from "typeorm";
 import connectionOptions from "./ormConfig";
-import app from "./app";
-import schema from "./schema";
+import App from "./app";
+
+const app = App.app;
+const server = App.server;
 
 const PORT: number | string = process.env.PORT || 4000;
-
-const server = new ApolloServer({
-  schema,
-  introspection: true,
-  playground: true
-});
 
 const handleAppStart = () => console.log(`Server Running on ${PORT}`);
 

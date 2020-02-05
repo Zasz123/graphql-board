@@ -9,19 +9,19 @@ import {
 
 @Entity()
 class User extends BaseEntity {
-  @PrimaryGeneratedColumn() id: number | undefined;
+  @PrimaryGeneratedColumn() id!: number;
 
   @Column({ type: "text" })
-  userId: string | undefined;
+  accountId!: string;
 
   @Column({ type: "text" })
-  userPw: string | undefined;
+  accountPw!: string;
 
   @Column({ type: "text" })
-  userName: string | undefined;
+  name!: string;
 
   @CreateDateColumn()
-  createdAt: string | undefined;
+  createdAt!: string;
 
   @UpdateDateColumn()
   updatedAt: string | undefined;

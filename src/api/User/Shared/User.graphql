@@ -4,9 +4,10 @@ type Query {
 
 type User {
   id: Int!
-  userId: String!
-  userPw: String!
-  userName: String!
+  accountId: String!
+  accountPw: String!
+  name: String!
+  board: [Board]
   createdAt: String!
   updatedAt: String
 }

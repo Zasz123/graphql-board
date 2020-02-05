@@ -5,8 +5,8 @@ type RegisterResponse {
 
 type Mutation {
   Register(
-    userId: String!
-    userPw: String!
-    userName: String!
+    accountId: String!
+    accountPw: String!
+    name: String!
   ): RegisterResponse!
 }
