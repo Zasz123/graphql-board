@@ -1,10 +1,17 @@
 import { Resolvers } from "../../../types/resolvers";
-import { CreateMutationArgs, CreateResponse } from "../../../types/graph";
+import {
+  BoardCreateMutationArgs,
+  BoardCreateResponse
+} from "../../../types/graph";
 import Board from "../../../entities/Board";
 
 const resolvers: Resolvers = {
   Mutation: {
-    Create: (_, args: CreateMutationArgs, { ctx }): CreateResponse => {
+    BoardCreate: (
+      _,
+      args: BoardCreateMutationArgs,
+      { ctx }
+    ): BoardCreateResponse => {
       try {
         const board = Board.create({
           ...args,

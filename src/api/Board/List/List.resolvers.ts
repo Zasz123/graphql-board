@@ -4,7 +4,10 @@ import Board from "../../../entities/Board";
 
 const resolvers: Resolvers = {
   Query: {
-    List: async (_, args: BoardListQueryArgs): Promise<BoardListResponse> => {
+    BoardList: async (
+      _,
+      args: BoardListQueryArgs
+    ): Promise<BoardListResponse> => {
       try {
         const List = await Board.find({
           relations: ["user"]

@@ -1,10 +1,10 @@
-type CreateResponse {
+type BoardCreateResponse {
   success: Boolean!
   error: String
 }
 
 type Mutation {
-  Create(title: String!, descs: String!): CreateResponse!
+  BoardCreate(title: String!, descs: String!): BoardCreateResponse!
   BoardDelete(id: Int!): BoardDeleteResponse
   BoardUpdate(id: Int!, title: String!, descs: String!): BoardUpdateResponse
   Login(accountId: String!, accountPw: String!): LoginResponse!

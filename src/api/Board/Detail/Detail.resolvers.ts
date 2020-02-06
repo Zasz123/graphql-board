@@ -7,7 +7,7 @@ import Board from "../../../entities/Board";
 
 const resolvers: Resolvers = {
   Query: {
-    Detail: async (
+    BoardDetail: async (
       _,
       { id }: BoardDetailQueryArgs
     ): Promise<BoardDetailResponse> => {

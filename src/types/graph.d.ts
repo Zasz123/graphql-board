@@ -1,4 +1,4 @@
-export const typeDefs = ["type CreateResponse {\n  success: Boolean!\n  error: String\n}\n\ntype Mutation {\n  Create(title: String!, descs: String!): CreateResponse!\n  BoardDelete(id: Int!): BoardDeleteResponse\n  BoardUpdate(id: Int!, title: String!, descs: String!): BoardUpdateResponse\n  Login(accountId: String!, accountPw: String!): LoginResponse!\n  Register(accountId: String!, accountPw: String!, name: String!): RegisterResponse!\n}\n\ntype BoardDeleteResponse {\n  success: Boolean!\n  error: String\n}\n\ntype BoardDetailResponse {\n  success: Boolean!\n  board: Board\n  error: String\n}\n\ntype Query {\n  BoardDetail(id: Int!): BoardDetailResponse!\n  BoardList(category: String, page: String): BoardListResponse\n  Board: Board\n  User: User\n}\n\ntype BoardListResponse {\n  success: Boolean!\n  list: [Board]\n  error: String\n}\n\ntype Board {\n  id: Int!\n  user: User!\n  title: String!\n  descs: String!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype BoardUpdateResponse {\n  success: Boolean!\n  error: String\n}\n\ntype LoginResponse {\n  success: Boolean!\n  error: String\n  token: String\n}\n\ntype RegisterResponse {\n  success: Boolean!\n  error: String\n}\n\ntype User {\n  id: Int!\n  accountId: String!\n  accountPw: String!\n  name: String!\n  createdAt: String!\n  updatedAt: String\n}\n"];
+export const typeDefs = ["type BoardCreateResponse {\n  success: Boolean!\n  error: String\n}\n\ntype Mutation {\n  BoardCreate(title: String!, descs: String!): BoardCreateResponse!\n  BoardDelete(id: Int!): BoardDeleteResponse\n  BoardUpdate(id: Int!, title: String!, descs: String!): BoardUpdateResponse\n  Login(accountId: String!, accountPw: String!): LoginResponse!\n  Register(accountId: String!, accountPw: String!, name: String!): RegisterResponse!\n}\n\ntype BoardDeleteResponse {\n  success: Boolean!\n  error: String\n}\n\ntype BoardDetailResponse {\n  success: Boolean!\n  board: Board\n  error: String\n}\n\ntype Query {\n  BoardDetail(id: Int!): BoardDetailResponse!\n  BoardList(category: String, page: String): BoardListResponse\n  Board: Board\n  User: User\n}\n\ntype BoardListResponse {\n  success: Boolean!\n  list: [Board]\n  error: String\n}\n\ntype Board {\n  id: Int!\n  user: User!\n  title: String!\n  descs: String!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype BoardUpdateResponse {\n  success: Boolean!\n  error: String\n}\n\ntype LoginResponse {\n  success: Boolean!\n  error: String\n  token: String\n}\n\ntype RegisterResponse {\n  success: Boolean!\n  error: String\n}\n\ntype User {\n  id: Int!\n  accountId: String!\n  accountPw: String!\n  name: String!\n  createdAt: String!\n  updatedAt: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -48,14 +48,14 @@ export interface BoardListResponse {
 }
 
 export interface Mutation {
-  Create: CreateResponse;
+  BoardCreate: BoardCreateResponse;
   BoardDelete: BoardDeleteResponse | null;
   BoardUpdate: BoardUpdateResponse | null;
   Login: LoginResponse;
   Register: RegisterResponse;
 }
 
-export interface CreateMutationArgs {
+export interface BoardCreateMutationArgs {
   title: string;
   descs: string;
 }
@@ -81,7 +81,7 @@ export interface RegisterMutationArgs {
   name: string;
 }
 
-export interface CreateResponse {
+export interface BoardCreateResponse {
   success: boolean;
   error: string | null;
 }
