@@ -1,0 +1,9 @@
+type BoardListResponse {
+  success: Boolean!
+  list: [Board]
+  error: String
+}
+
+type Query {
+  BoardList(category: String, page: String): BoardListResponse
+}

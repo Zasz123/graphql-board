@@ -1,6 +1,6 @@
 type Board {
   id: Int!
-  user: User
+  user: User!
   title: String!
   descs: String!
   createdAt: String!

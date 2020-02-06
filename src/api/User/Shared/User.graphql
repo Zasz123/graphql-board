@@ -7,7 +7,6 @@ type User {
   accountId: String!
   accountPw: String!
   name: String!
-  board: [Board]
   createdAt: String!
   updatedAt: String
 }

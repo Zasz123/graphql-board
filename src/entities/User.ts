@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  OneToMany
 } from "typeorm";
+import Board from "./Board";
 
 @Entity()
 class User extends BaseEntity {
@@ -20,11 +22,17 @@ class User extends BaseEntity {
   @Column({ type: "text" })
   name!: string;
 
+  @OneToMany(
+    type => Board,
+    board => board.user
+  )
+  boards: Board[] | undefined;
+
   @CreateDateColumn()
   createdAt!: string;
 
   @UpdateDateColumn()
-  updatedAt: string | undefined;
+  updatedAt!: string | null;
 }
 
 export default User;

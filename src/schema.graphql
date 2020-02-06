@@ -5,22 +5,48 @@ type CreateResponse {
 
 type Mutation {
   Create(title: String!, descs: String!): CreateResponse!
+  BoardDelete(id: Int!): BoardDeleteResponse
+  BoardUpdate(id: Int!, title: String!, descs: String!): BoardUpdateResponse
   Login(accountId: String!, accountPw: String!): LoginResponse!
   Register(accountId: String!, accountPw: String!, name: String!): RegisterResponse!
 }
 
+type BoardDeleteResponse {
+  success: Boolean!
+  error: String
+}
+
+type BoardDetailResponse {
+  success: Boolean!
+  board: Board
+  error: String
+}
+
+type Query {
+  BoardDetail(id: Int!): BoardDetailResponse!
+  BoardList(category: String, page: String): BoardListResponse
+  Board: Board
+  User: User
+}
+
+type BoardListResponse {
+  success: Boolean!
+  list: [Board]
+  error: String
+}
+
 type Board {
   id: Int!
-  user: User
+  user: User!
   title: String!
   descs: String!
   createdAt: String!
   updatedAt: String
 }
 
-type Query {
-  Board: Board
-  User: User
+type BoardUpdateResponse {
+  success: Boolean!
+  error: String
 }
 
 type LoginResponse {
@@ -39,7 +65,6 @@ type User {
   accountId: String!
   accountPw: String!
   name: String!
-  board: [Board]
   createdAt: String!
   updatedAt: String
 }

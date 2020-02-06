@@ -6,12 +6,6 @@ import User from "../../../entities/User";
 import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
-  Query: {
-    User: (parent, args, { state }) => {
-      console.log(state);
-      return "";
-    }
-  },
   Mutation: {
     Login: async (_, args: LoginMutationArgs): Promise<LoginResponse> => {
       try {

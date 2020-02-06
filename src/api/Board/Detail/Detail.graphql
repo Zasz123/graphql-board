@@ -1,0 +1,9 @@
+type BoardDetailResponse {
+  success: Boolean!
+  board: Board
+  error: String
+}
+
+type Query {
+  BoardDetail(id: Int!): BoardDetailResponse!
+}

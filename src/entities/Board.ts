@@ -13,23 +13,23 @@ import User from "./User";
 class Board extends BaseEntity {
   @PrimaryGeneratedColumn() id!: number;
 
+  @ManyToOne(
+    type => User,
+    user => user.boards
+  )
+  user!: User;
+
   @Column({ type: "text" })
   title!: string;
 
   @Column({ type: "text" })
   descs!: string;
 
-  @ManyToOne(
-    type => User,
-    user => user.id
-  )
-  user!: User;
-
   @CreateDateColumn()
   createdAt!: string;
 
   @UpdateDateColumn()
-  updatedAt: string | undefined;
+  updatedAt!: string | null;
 }
 
 export default Board;

@@ -15,12 +15,7 @@ class App {
       schema,
       introspection: true,
       playground: true,
-      context: (ctx: Koa.Context) => {
-        console.log(ctx.state);
-        return {
-          state: ctx.state
-        };
-      }
+      context: (ctx: Koa.Context) => ctx
     });
   }
 
@@ -35,12 +30,12 @@ class App {
     if (token) {
       const user = await decodeJWT(token);
       if (user) {
-        ctx.state.user = token;
+        ctx.state.user = user;
       } else {
         ctx.state.user = undefined;
       }
     }
-    console.log(ctx.state);
+    // console.log(ctx.state);
     await next();
   };
 }

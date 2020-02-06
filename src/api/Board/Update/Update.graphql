@@ -1,0 +1,8 @@
+type BoardUpdateResponse {
+  success: Boolean!
+  error: String
+}
+
+type Mutation {
+  BoardUpdate(id: Int!, title: String!, descs: String!): BoardUpdateResponse
+}

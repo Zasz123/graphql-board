@@ -1,25 +1,27 @@
 import { Resolvers } from "../../../types/resolvers";
-import { CreateMutationArgs, CreateResponse } from "../../../types/graph";
+import { BoardListQueryArgs, BoardListResponse } from "../../../types/graph";
 import Board from "../../../entities/Board";
 
 const resolvers: Resolvers = {
-  Mutation: {
-    Create: (_, args: CreateMutationArgs, { ctx }): CreateResponse => {
+  Query: {
+    List: async (_, args: BoardListQueryArgs): Promise<BoardListResponse> => {
       try {
-        const board = Board.create({
-          ...args,
-          user: ctx.state.user.id
-        }).save();
-        if (!board) {
+        const List = await Board.find({
+          relations: ["user"]
+        });
+
+        if (!List) {
           throw new Error("database error!");
         }
         return {
           success: true,
+          list: List,
           error: null
         };
       } catch (error) {
         return {
           success: false,
+          list: null,
           error: error.message
         };
       }
