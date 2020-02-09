@@ -1,9 +1,8 @@
-import { Resolvers } from "../../../types/resolvers";
 import { LoginMutationArgs, LoginResponse } from "../../../types/graph";
+import { Resolvers } from "../../../types/resolvers";
 
 import crypto from "crypto-js";
 import User from "../../../entities/User";
-import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -22,17 +21,19 @@ const resolvers: Resolvers = {
           throw new Error("password is wrong!");
         }
 
-        const token = createJWT(user.id);
+        const token = await user.accessUserToken();
         return {
           success: true,
           error: null,
-          token
+          accessToken: token.accessToken,
+          refreshToken: token.refreshToken
         };
       } catch (error) {
         return {
           success: false,
           error: error.message,
-          token: null
+          accessToken: null,
+          refreshToken: null
         };
       }
     }

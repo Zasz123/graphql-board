@@ -7,7 +7,8 @@ type Mutation {
   BoardCreate(title: String!, descs: String!): BoardCreateResponse!
   BoardDelete(id: Int!): BoardDeleteResponse
   BoardUpdate(id: Int!, title: String!, descs: String!): BoardUpdateResponse
-  Login(accountId: String!, accountPw: String!): LoginResponse!
+  Login(accountId: String!, accountPw: String!): LoginResponse
+  Refresh(refreshToken: String!): RefreshResponse
   Register(accountId: String!, accountPw: String!, name: String!): RegisterResponse!
 }
 
@@ -52,7 +53,15 @@ type BoardUpdateResponse {
 type LoginResponse {
   success: Boolean!
   error: String
-  token: String
+  accessToken: String
+  refreshToken: String
+}
+
+type RefreshResponse {
+  success: Boolean!
+  error: String
+  accessToken: String
+  refreshToken: String
 }
 
 type RegisterResponse {

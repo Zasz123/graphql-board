@@ -1,20 +1,26 @@
-import { Resolvers } from "../../../types/resolvers";
+import Board from "../../../entities/Board";
 import {
   BoardDeleteMutationArgs,
   BoardDeleteResponse
 } from "../../../types/graph";
-import Board from "../../../entities/Board";
+import { Resolvers } from "../../../types/resolvers";
 
 const resolvers: Resolvers = {
   Mutation: {
     BoardDelete: async (
       _,
       { id }: BoardDeleteMutationArgs,
-      { ctx }
+      { user }
     ): Promise<BoardDeleteResponse> => {
+      if (user === "ExpiredToken") {
+        return {
+          success: true,
+          error: "ExpiredToken"
+        };
+      }
       try {
         const board = await Board.findOne({ id }, { relations: ["user"] });
-        if (board?.user.id !== ctx.state.user.id) {
+        if (board?.user.id !== user.id) {
           throw new Error("Wrong User or Token");
         }
         const Deleted = await Board.delete({ id });

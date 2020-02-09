@@ -1,21 +1,27 @@
-import { Resolvers } from "../../../types/resolvers";
+import Board from "../../../entities/Board";
 import {
   BoardUpdateMutationArgs,
   BoardUpdateResponse
 } from "../../../types/graph";
-import Board from "../../../entities/Board";
+import { Resolvers } from "../../../types/resolvers";
 
 const resolvers: Resolvers = {
   Mutation: {
     BoardUpdate: async (
       _,
       args: BoardUpdateMutationArgs,
-      { ctx }
+      { user }
     ): Promise<BoardUpdateResponse> => {
+      if (user === "ExpiredToken") {
+        return {
+          success: true,
+          error: "ExpiredToken"
+        };
+      }
       const { id, title, descs } = args;
       try {
         const board = await Board.findOne({ id }, { relations: ["user"] });
-        if (board?.user.id !== ctx.state.user.id) {
+        if (board?.user.id !== user.id) {
           throw new Error("Wrong User or Token");
         }
         const Updated = await Board.update({ id }, { title, descs });

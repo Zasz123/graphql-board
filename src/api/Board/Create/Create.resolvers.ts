@@ -1,21 +1,27 @@
-import { Resolvers } from "../../../types/resolvers";
+import Board from "../../../entities/Board";
 import {
   BoardCreateMutationArgs,
   BoardCreateResponse
 } from "../../../types/graph";
-import Board from "../../../entities/Board";
+import { Resolvers } from "../../../types/resolvers";
 
 const resolvers: Resolvers = {
   Mutation: {
     BoardCreate: (
       _,
       args: BoardCreateMutationArgs,
-      { ctx }
+      { user }
     ): BoardCreateResponse => {
       try {
+        if (user === "ExpiredToken") {
+          return {
+            success: true,
+            error: "ExpiredToken"
+          };
+        }
         const board = Board.create({
           ...args,
-          user: ctx.state.user.id
+          user: user.id
         }).save();
         if (!board) {
           throw new Error("database error!");
