@@ -6,5 +6,5 @@ type RefreshResponse {
 }
 
 type Mutation {
-  Refresh(refreshToken: String!): RefreshResponse
+  Refresh: RefreshResponse
 }

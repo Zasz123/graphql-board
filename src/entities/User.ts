@@ -58,7 +58,7 @@ class User extends BaseEntity {
       },
       {
         subject: "accessToken",
-        expiresIn: "2s"
+        expiresIn: "2h"
       }
     );
 

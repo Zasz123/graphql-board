@@ -26,6 +26,21 @@ export const createToken = async (
   return token;
 };
 
+export function setTokenCookie(
+  ctx: Context,
+  tokens: { accessToken: string; refreshToken: string }
+) {
+  ctx.cookies.set("accessToken", tokens.accessToken, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60
+  });
+
+  ctx.cookies.set("refreshToken", tokens.refreshToken, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60
+  });
+}
+
 export const refresh = async (ctx: Context, refreshToken: string) => {
   try {
     const decoded = await decodeToken(refreshToken);
@@ -38,7 +53,7 @@ export const refresh = async (ctx: Context, refreshToken: string) => {
       decoded.exp,
       refreshToken
     );
-    return decoded;
+    return token;
   } catch (error) {
     throw error;
   }
@@ -55,7 +70,7 @@ export const jwtConfig: Middleware = async (
     }
     const accessTokenData = await decodeToken(accesstoken);
 
-    ctx.state.user = accessTokenData.user;
+    ctx.state.user = accessTokenData;
   } catch (error) {}
   await next();
 };

@@ -8,7 +8,7 @@ type Mutation {
   BoardDelete(id: Int!): BoardDeleteResponse
   BoardUpdate(id: Int!, title: String!, descs: String!): BoardUpdateResponse
   Login(accountId: String!, accountPw: String!): LoginResponse
-  Refresh(refreshToken: String!): RefreshResponse
+  Refresh: RefreshResponse
   Register(accountId: String!, accountPw: String!, name: String!): RegisterResponse!
 }
 

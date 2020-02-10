@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import Category from "./Category";
+// import Category from "./Category";
 import User from "./User";
 
 @Entity()
@@ -18,8 +18,8 @@ class Board extends BaseEntity {
   @Column({ type: "int" })
   userId!: number;
 
-  @Column({ type: "int" })
-  categoryId!: number;
+  // @Column({ type: "int" })
+  // categoryId!: number;
 
   @Column({ type: "text" })
   title!: string;
@@ -40,12 +40,12 @@ class Board extends BaseEntity {
   @JoinColumn({ name: "userId" })
   user!: User;
 
-  @ManyToOne(
-    type => Category,
-    category => category.boards
-  )
-  @JoinColumn({ name: "categoryId" })
-  category!: Category;
+  // @ManyToOne(
+  //   type => Category,
+  //   category => category.boards
+  // )
+  // @JoinColumn({ name: "categoryId" })
+  // category!: Category;
 }
 
 export default Board;

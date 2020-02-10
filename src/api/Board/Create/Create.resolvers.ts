@@ -15,13 +15,13 @@ const resolvers: Resolvers = {
       try {
         if (user === "ExpiredToken") {
           return {
-            success: true,
+            success: false,
             error: "ExpiredToken"
           };
         }
         const board = Board.create({
           ...args,
-          user: user.id
+          userId: user.userId
         }).save();
         if (!board) {
           throw new Error("database error!");

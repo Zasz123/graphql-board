@@ -1,32 +1,32 @@
-import {
-  Entity,
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToMany
-} from "typeorm";
-import Board from "./Board";
+// import {
+//   Entity,
+//   BaseEntity,
+//   PrimaryGeneratedColumn,
+//   Column,
+//   CreateDateColumn,
+//   UpdateDateColumn,
+//   OneToMany
+// } from "typeorm";
+// import Board from "./Board";
 
-@Entity()
-class Category extends BaseEntity {
-  @PrimaryGeneratedColumn() id!: number;
+// @Entity()
+// class Category extends BaseEntity {
+//   @PrimaryGeneratedColumn() id!: number;
 
-  @Column({ type: "text" })
-  name!: string;
+//   @Column({ type: "text" })
+//   name!: string;
 
-  @CreateDateColumn()
-  createdAt!: string;
+//   @CreateDateColumn()
+//   createdAt!: string;
 
-  @UpdateDateColumn()
-  updatedAt!: string;
+//   @UpdateDateColumn()
+//   updatedAt!: string;
 
-  @OneToMany(
-    type => Board,
-    board => board.categoryId
-  )
-  boards: Board[] | undefined;
-}
+//   @OneToMany(
+//     type => Board,
+//     board => board.categoryId
+//   )
+//   boards: Board[] | undefined;
+// }
 
-export default Category;
+// export default Category;

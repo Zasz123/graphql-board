@@ -17,7 +17,10 @@ const apollo = new ApolloServer({
   schema,
   context: ({ ctx }: { ctx: Koa.Context }) => {
     return {
-      user: ctx.state.user
+      ctx,
+      user: ctx.state.user,
+      accessToken: ctx.headers.accessToken,
+      refreshToken: ctx.headers.refreshToken
     };
   }
 });

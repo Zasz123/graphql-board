@@ -1,18 +1,15 @@
 import { Context } from "koa";
-import { RefreshMutationArgs, RefreshResponse } from "../../../types/graph";
+import { RefreshResponse } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import { refresh } from "../../../utils/token";
 
 const resolvers: Resolvers = {
   Mutation: {
-    Refresh: async (
-      _,
-      args: RefreshMutationArgs,
-      ctx: Context
-    ): Promise<RefreshResponse> => {
+    Refresh: async (_, __, { ctx, refreshToken }): Promise<RefreshResponse> => {
       try {
-        const { refreshToken } = ctx.headers;
+        console.log(ctx.headers);
         const tokens = await refresh(ctx, refreshToken);
+        console.log(tokens);
         return {
           success: true,
           error: null,
@@ -20,9 +17,10 @@ const resolvers: Resolvers = {
           refreshToken: tokens.refreshToken
         };
       } catch (error) {
+        console.log(error);
         return {
           success: false,
-          error: null,
+          error: error.message,
           accessToken: null,
           refreshToken: null
         };
