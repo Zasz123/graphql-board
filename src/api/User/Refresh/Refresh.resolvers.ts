@@ -5,10 +5,10 @@ import { refresh } from "../../../utils/token";
 
 const resolvers: Resolvers = {
   Mutation: {
-    Refresh: async (_, __, { ctx, refreshToken }): Promise<RefreshResponse> => {
+    Refresh: async (_, __, { ctx }): Promise<RefreshResponse> => {
       try {
-        console.log(ctx.headers);
-        const tokens = await refresh(ctx, refreshToken);
+        const { refreshtoken } = ctx.headers;
+        const tokens = await refresh(ctx, refreshtoken);
         console.log(tokens);
         return {
           success: true,
